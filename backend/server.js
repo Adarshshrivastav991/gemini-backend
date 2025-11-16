@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const fetch = require('node-fetch');
 require('dotenv').config();
 
 const app = express();
@@ -49,7 +50,34 @@ app.get('/health', (req, res) => {
     message: 'Gemini AI Backend is running',
     timestamp: new Date().toISOString()
   });
-});// Main prediction endpoint
+});
+
+// GET route for /predict - shows usage instructions
+app.get('/predict', (req, res) => {
+  res.json({
+    error: 'Method not allowed',
+    message: 'This endpoint requires POST method',
+    usage: {
+      method: 'POST',
+      endpoint: '/predict',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {
+        age: 'number (0-150)',
+        purchases: 'number (>=0)',
+        timeSpent: 'number (>=0, minutes)'
+      },
+      example: {
+        age: 25,
+        purchases: 3,
+        timeSpent: 15
+      }
+    }
+  });
+});
+
+// Main prediction endpoint
 app.post('/predict', async (req, res) => {
   try {
     // Input validation
