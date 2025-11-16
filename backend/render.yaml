@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: gemini-ai-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: GEMINI_API_KEY
+        value: AIzaSyAHL-Tdp3vlvGTelE4FP66RK4hsqmDy21M
+      - key: NODE_ENV
+        value: production
