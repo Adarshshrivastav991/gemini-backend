@@ -1,0 +1,14 @@
+{
+  "name": "gemini-ai-backend-root",
+  "version": "1.0.0",
+  "description": "Root package for Gemini AI Backend deployment",
+  "scripts": {
+    "build": "cd backend && npm install",
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "private": true
+}
