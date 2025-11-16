@@ -27,16 +27,29 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// Health check endpoint
-app.get('/health', (req, res) => {
+// Welcome route
+app.get('/', (req, res) => {
   res.json({
-    status: 'OK',
-    message: 'Gemini AI Backend is running',
+    name: 'Gemini AI Backend',
+    version: '1.0.0',
+    status: 'Online',
+    endpoints: {
+      health: '/health',
+      predict: '/predict (POST)'
+    },
+    message: 'Welcome to Gemini AI Purchase Prediction API',
     timestamp: new Date().toISOString()
   });
 });
 
-// Main prediction endpoint
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    message: 'Gemini AI Backend is running',
+    timestamp: new Date().toISOString()
+  });
+});// Main prediction endpoint
 app.post('/predict', async (req, res) => {
   try {
     // Input validation
